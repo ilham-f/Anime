@@ -1,0 +1,21 @@
+{
+  "name": "anime",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "npx postcss static/css/styles.css -o static/css/output.css",
+    "watch:css": "npx postcss static/css/styles.css -o static/css/output.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.3.6"
+  },
+  "devDependencies": {
+    "postcss-cli": "^11.0.0"
+  }
+}

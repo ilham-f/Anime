@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <!-- MAIN CONTAINER -->        
+        <h1 class="pt-8 pb-2 text-xl font-medium" id="myList">Trending Now</h1>
+        <div class="flex overflow-clip space-x-6">
+            {% for anime in trending %}
+                <a href="watch/{{ anime.id }}">
+                    <div class="border w-64 h-36 flex justify-center items-center p-3">
+                        {{anime.title}}
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        
+        {% if auth_user == 1 and watched == 1 %}
+        <h1 class="pt-8 pb-2 text-xl font-medium" id="tvShows">Because you watched {{ anime_title }}</h1>
+        <div class="flex overflow-clip space-x-6">
+            {% for anime in genreRecs %}
+                <a href="">
+                    <div class="border w-64 h-36 flex justify-center items-center p-3">
+                        {{anime.title}}
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    <!-- END OF MAIN CONTAINER -->
+{% endblock %}

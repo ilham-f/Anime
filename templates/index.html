@@ -1,0 +1,70 @@
+<!-- index.html -->
+{% load static %}
+<html>
+    <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Nimeflix</title>
+      <link rel="stylesheet" href="{% static 'css/output.css' %}">
+      <script src="{% static 'js/jquery.js' %}"></script>
+      <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9" crossorigin="anonymous"></script>
+    </head>
+    <body class="flex flex-col min-h-screen">
+        <!-- NAVBAR -->
+        <div style="background-color: #141414;" class="px-20 py-8 fixed w-full top-0">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="{% url 'home' %}"><img class="w-36 h-10" src="https://fontmeme.com/permalink/231211/07b83e3529718ff963e489a2e5ee34d2.png" alt="netflix-font"></a>
+                    <nav class="ms-10">                
+                        <a class="px-3" href="{% url 'home' %}">Home</a>
+                        <a class="px-3" href="">Genre</a>
+                        <a class="px-3" href="">Anime List</a>
+                    </nav>
+                </div>
+                {% if auth_user == 1 %}
+                    <div class="relative inline-block text-left">
+                        <button id="dropdown" type="button" class="flex items-center justify-center text-white">
+                            Account
+                            <svg class="-mr-1 h-5 w-5 text-white ms-2" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                
+                        <div id="dropdownMenu" class="hidden origin-top-right absolute right-0 mt-2 w-36 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                            <div class="py-1">
+                                {% comment %} <a href="{% url 'profile' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a> {% endcomment %}
+                                <a href="{% url 'logout' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="flex items-center space-x-3">
+                        <a class="text-white" href="{% url 'login' %}">Login</a>
+                        <div class="w-[0.5px] h-5 bg-white"></div>
+                        <a class="text-white" href="{% url 'register' %}">Register</a>
+                    </div>
+                {% endif %}
+            </div>      
+        </div>
+        <!-- END OF NAVBAR -->
+
+        <div class="px-20 mt-28 flex-1">
+            {% block content %}{% endblock %}
+        </div>
+        
+        <!-- FOOTER -->
+        <footer class="text-center py-6">
+            <p>Copyright &copy 2023 Nimeflix.</p>
+        </footer>
+    </body>
+
+    <script>
+        $(document).ready(function () {
+            $('#dropdown').click(function (e) { 
+                e.preventDefault();
+                $('#dropdownMenu').toggleClass('hidden');
+            });
+        });
+    </script>
+</html>
