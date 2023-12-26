@@ -13,6 +13,17 @@ anime_data = anime_data[anime_data['rating'] != -1]
 # Drop 'genres' that has missing values
 anime_data = anime_data.dropna(subset=['genres'])
 
+anime_data.to_csv("anime_genre.csv");
+
+
+
+
+
+
+
+
+
+
 # Convert genres values to a list of strings
 anime_data['genres'] = anime_data['genres'].apply(lambda x: x.split(', ') if isinstance(x, str) else [])
 

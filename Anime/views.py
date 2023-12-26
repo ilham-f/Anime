@@ -128,7 +128,7 @@ def home(request):
         genre_recommendations = []
         anime_title = 0
 
-    trendingAnimes = Anime.objects.all().order_by('-rating')[:5]
+    trendingAnimes = Anime.objects.all().order_by('-rating')[:10]
 
     if user.is_authenticated:
         auth_user = 1
